@@ -58,3 +58,81 @@ end)
 -- Mover READY debajo del cuarto botón
 v163.Position = UDim2.fromOffset(18,315)
 
+-- 🆕 NUEVO BOTÓN: SERVER HOPPER
+local noticeFile = "KOXTA_ServerHopper_Seen.txt"
+
+local function hopperAvisoVisto()
+    return type(isfile) == "function" and isfile(noticeFile)
+end
+
+local function guardarHopperAviso()
+    if type(writefile) == "function" then
+        pcall(function()
+            writefile(noticeFile, "confirmed")
+        end)
+    end
+end
+
+if not hopperAvisoVisto() then
+    local Notice = Instance.new("Frame")
+    Notice.Name = "HopperNotice"
+    Notice.Size = UDim2.fromOffset(270, 155)
+    Notice.Position = UDim2.new(0.5, -135, 0.5, -78)
+    Notice.BackgroundColor3 = Color3.fromRGB(18,18,24)
+    Notice.BorderSizePixel = 0
+    Notice.ZIndex = 100
+    Notice.Parent = v5
+
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0,14)
+    corner.Parent = Notice
+
+    local stroke = Instance.new("UIStroke")
+    stroke.Color = Color3.fromRGB(150,80,255)
+    stroke.Thickness = 1.5
+    stroke.Parent = Notice
+
+    local title = Instance.new("TextLabel")
+    title.Size = UDim2.new(1,-20,0,32)
+    title.Position = UDim2.fromOffset(10,8)
+    title.BackgroundTransparency = 1
+    title.Text = "🆕 NUEVO BOTÓN"
+    title.TextColor3 = Color3.fromRGB(210,150,255)
+    title.Font = Enum.Font.GothamBold
+    title.TextSize = 16
+    title.ZIndex = 101
+    title.Parent = Notice
+
+    local text = Instance.new("TextLabel")
+    text.Size = UDim2.new(1,-24,0,58)
+    text.Position = UDim2.fromOffset(12,42)
+    text.BackgroundTransparency = 1
+    text.Text = "🇪🇸 Server Hopper disponible.\n🇺🇸 Server Hopper is now available."
+    text.TextColor3 = Color3.fromRGB(235,235,240)
+    text.Font = Enum.Font.GothamSemibold
+    text.TextSize = 12
+    text.TextWrapped = true
+    text.ZIndex = 101
+    text.Parent = Notice
+
+    local ok = Instance.new("TextButton")
+    ok.Size = UDim2.new(1,-30,0,35)
+    ok.Position = UDim2.fromOffset(15,110)
+    ok.BackgroundColor3 = Color3.fromRGB(140,70,255)
+    ok.BorderSizePixel = 0
+    ok.Text = "✓ OK / CONFIRMAR"
+    ok.TextColor3 = Color3.fromRGB(255,255,255)
+    ok.Font = Enum.Font.GothamBold
+    ok.TextSize = 13
+    ok.ZIndex = 101
+    ok.Parent = Notice
+
+    local okCorner = Instance.new("UICorner")
+    okCorner.CornerRadius = UDim.new(0,10)
+    okCorner.Parent = ok
+
+    ok.MouseButton1Click:Connect(function()
+        guardarHopperAviso()
+        Notice:Destroy()
+    end)
+end
