@@ -34,32 +34,17 @@ local v0=game:GetService("TweenService");local v1=game:GetService("Players");loc
 v11.Size = UDim2.fromOffset(280, 365)
 v163.Position = UDim2.fromOffset(18, 320)
 
-local HopperButton = Instance.new("TextButton")
-HopperButton.Name = "SCRIPT_HOPPER"
-HopperButton.Size = UDim2.new(1, -36, 0, 48)
-HopperButton.Position = UDim2.fromOffset(18, 252)
-HopperButton.BackgroundColor3 = Color3.fromRGB(140, 70, 255)
-HopperButton.BorderSizePixel = 0
-HopperButton.Text = "SCRIPT HOPPER"
-HopperButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-HopperButton.Font = Enum.Font.GothamBold
-HopperButton.TextSize = 15
-HopperButton.AutoButtonColor = false
-HopperButton.ZIndex = 20
-HopperButton.Parent = v11
+local v148,v149 = v140(
+    "SCRIPT HOPPER",
+    Color3.fromRGB(140,70,255),
+    252
+)
 
-local HopperCorner = Instance.new("UICorner")
-HopperCorner.CornerRadius = UDim.new(0, 12)
-HopperCorner.Parent = HopperButton
+v162(v148,Color3.fromRGB(140,70,255))
 
-local HopperStroke = Instance.new("UIStroke")
-HopperStroke.Color = Color3.fromRGB(200, 140, 255)
-HopperStroke.Thickness = 1.5
-HopperStroke.Parent = HopperButton
-
-HopperButton.MouseButton1Click:Connect(function()
+v148.MouseButton1Click:Connect(function()
     v179.Text = "SCRIPT HOPPER SELECTED"
-    v179.TextColor3 = Color3.fromRGB(190, 130, 255)
+    v179.TextColor3 = Color3.fromRGB(190,130,255)
 
     pcall(function()
         loadstring(game:HttpGet(
